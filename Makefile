@@ -1,5 +1,5 @@
 
-up:
+up:build
 	docker-compose up -d
 
 down:
@@ -9,7 +9,13 @@ ps:
 	docker-compose ps
 
 bash:
-	docker-compose run --rm go bash
+	docker-compose exec go bash
+
+build:
+	docker-compose build 
+	
+logs:
+	docker-compose logs -f
 
 restart: down up ps
 
