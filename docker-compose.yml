@@ -5,6 +5,9 @@ services:
       volumes:
          - "./:/app"
       working_dir: "/app"
+      ports:
+         - "9988:9977"
+      entrypoint: "go run cmd/http/http.go"
    redis:
       image: redis:5.0.7
 
