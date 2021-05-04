@@ -1,27 +1,19 @@
 package main
 
 import (
-   "fmt"
-   "net/http"
+   "github.com/gin-gonic/gin"
 )
 
-func hello(w http.ResponseWriter, _ *http.Request){
-   _,_= fmt.Fprint(w, "hello\n")
-}
-
-func headers(w http.ResponseWriter, req *http.Request){
-   for name, headers := range req.Header {
-      for _, h := range headers {
-         _,_= fmt.Fprintf(w, "%v: %v\n", name, h)
-      }
-   }
-}
-
 func main() {
-   http.HandleFunc("/hello", hello)
-   http.HandleFunc("/headers", headers)
+   r:= gin.Default()
+   r.GET("/ping", func(c *gin.Context){
+      c.JSON(200, gin.H{
+         "message": "pong",
+      })
+   })
 
-   addr := ":9977"
-   fmt.Printf("Listening on %v", addr)
-   http.ListenAndServe(addr, nil)
+   err := r.Run()
+   if err != nil {
+      panic(err)
+   }
 }

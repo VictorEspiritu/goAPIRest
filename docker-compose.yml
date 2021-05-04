@@ -6,7 +6,7 @@ services:
          - "./:/app"
       working_dir: "/app"
       ports:
-         - "9988:9977"
+         - "9988:8080"
       entrypoint: "go run cmd/http/http.go"
    redis:
       image: redis:5.0.7
